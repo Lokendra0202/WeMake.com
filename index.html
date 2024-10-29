@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background: linear-gradient(90deg, #1abc9c, #16a085);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hero {
+            margin-top: 50px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(38, 158, 194, 0.5)), url('hero-image.jpg') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .fact {
+            width: calc(30% - 20px);
+            margin: 10px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .services-container, .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .service, .testimonial {
+            background: #ffffff;
+            margin: 20px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            flex: 1 1 calc(33.333% - 40px);
+        }
+
+        .service:hover, .testimonial:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #34495e;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .fact, .service, .testimonial {
+                flex: 1 1 calc(50% - 40px);
+            }
+        }
+
+
+        @media (max-width: 480px) {
+            .fact, .service, .testimonial {
+                flex: 1 1 100%;
+                margin-right: 0;
+            }
+        }
+        .navbar-toggle {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+#navbar {
+    display: flex;
+}
+
+nav ul {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .navbar-toggle {
+        display: block;
+    }
+
+    #navbar {
+        display: none; /* Hide the navbar initially on mobile */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* Adjust based on header height */
+        background-color: #1abc9c; /* Match header background */
+    }
+
+    #navbar.show {
+        display: flex; /* Show navbar when toggled */
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack items vertically */
+        width: 100%;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 10px 0; /* Add vertical spacing */
+    }
+}
+
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #contact {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#contact h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+#contact p {
+    font-size: 1em;
+    margin-bottom: 25px;
+}
+
+#contact form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 1em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #1abc9c;
+    outline: none;
+}
+
+.cta-button {
+    background: #e67e22;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    background: #d57e21;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>WeMake</h1>
+            <button class="navbar-toggle" onclick="toggleNav()">&#9776;</button>
+            <nav id="navbar">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    
+    <section id="introduction" class="fade-in" style="background-color: #2c3e50; color: white; padding: 40px 20px;">
+        <h2>Welcome to My Portfolio</h2>
+        <p>I'm a dedicated freelancer focused on delivering high-quality services in web development, graphic design, and content creation.</p>
+        <div class="icon-container" style="display: flex; justify-content: center; flex-wrap: wrap;">
+            <div class="icon" style="margin: 10px;">
+                <img src="application.png" alt="Web Development" style="width: 80px; height: 80px;">
+                <h3>Web Development</h3>
+            </div>
+            <div class="icon" style="margin: 10px;">
+                <img src="illustration.png" alt="Graphic Design" style="width: 80px; height: 80px;">
+                <h3>Graphic Design</h3>
+            </div>
+            <div class="icon" style="margin: 10px;">
+                <img src="sheet.png" alt="Content Creation" style="width: 80px; height: 80px;">
+                <h3>Content Creation</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="fun-facts" class="fade-in" style="background-color: #f9f9f9; padding: 60px 20px;">
+        <h2 style="color: #1abc9c;">Fun Facts About Me</h2>
+        <div class="container services-container">
+            <div class="fact">
+                <h3>Tech Enthusiast</h3>
+                <p>I love exploring new technologies and tools, constantly expanding my skill set to stay ahead in the industry.</p>
+            </div>
+            <div class="fact">
+                <h3>Creative Problem Solver</h3>
+                <p>I thrive on challenges and enjoy finding innovative solutions to complex problems.</p>
+            </div>
+            <div class="fact">
+                <h3>Passionate About Learning</h3>
+                <p>I'm always eager to learn and grow professionally.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Unlock Your Project's Potential</h2>
+            <p>Professional services to elevate your business.</p>
+            <a href="#contact" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>My Services</h2>
+            <div class="services-container">
+                <div class="service">
+                    <img src="application.png" alt="Web Development" style="height: 100px;">
+                    <h3>Web Development</h3>
+                    <p>Creating responsive and user-friendly websites.</p>
+                </div>
+                <div class="service">
+                    <img src="illustration.png" alt="Graphic Design" style="height: 125px;">
+                    <h3>Graphic Design</h3>
+                    <p>Designing graphics and branding materials.</p>
+                </div>
+                <div class="service">
+                    <img src="sheet.png" alt="Content Writing" style="height: 125px;">
+                    <h3>Content Writing</h3>
+                    <p>Crafting compelling content to engage your audience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonials" style="padding: 30px 10px; position: relative;">
+        <h2 style="text-align: center; margin-bottom: 20px; font-size: 1.5em;">What Clients Say</h2>
+        <div style="max-width: 600px; margin: 0 auto;"> 
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="item active" style="padding: 10px 0;">
+                        <img src="WhatsApp Image 2024-10-24 at 09.26.17_f7a5c262.jpg" alt="Client A" style="width:100%; height:auto; max-height: 200px;">
+                        <p style="text-align: center; margin-top: 10px; font-size: 1em;">"Fantastic work! Exceeded my expectations!"</p>
+                    </div>
+                    <div class="item" style="padding: 10px 0;">
+                        <img src="WhatsApp Image 2024-10-24 at 09.26.16_a3aef425.jpg" alt="Client B" style="width:100%; height:auto; max-height: 200px;">
+                        <p style="text-align: center; margin-top: 10px; font-size: 1em;">"Professional and timely. Will work with again!"</p>
+                    </div>
+                    <div class="item" style="padding: 10px 0;">
+                        <img src="WhatsApp Image 2024-10-24 at 09.26.15_0ab8877c.jpg" alt="Client C" style="width:100%; height:auto; max-height: 200px;">
+                        <p style="text-align: center; margin-top: 10px; font-size: 1em;">"Great communication and quality results!"</p>
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+    <section id="contact" style="padding: 40px 20px; background-color: #f9f9f9; color: #333; border-radius: 10px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
+        <h2 style="font-size: 2em; margin-bottom: 15px;">Get in Touch</h2>
+        <p style="font-size: 1em; margin-bottom: 25px;">I’d love to hear from you! Please fill out the form below.</p>
+        <form id="contactForm" action="phone.php" method="post" style="max-width: 400px; margin: 0 auto;">
+            <div class="form-group">
+                <label for="name" style="font-size: 1em;">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required style="border-radius: 5px;">
+            </div>
+            <div class="form-group">
+                <label for="email" style="font-size: 1em;">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required style="border-radius: 5px;">
+            </div>
+            <div class="form-group">
+                <label for="number" style="font-size: 1em;">Mobile No:</label>
+                <input type="tel" class="form-control" id="number" name="number" required 
+                       style="border-radius: 5px;" pattern="^\d{10}$" 
+                       title="Please enter a 10-digit mobile number">
+            </div>
+            
+            
+            <div class="form-group">
+                <label for="message" style="font-size: 1em;">Message:</label>
+                <textarea class="form-control" id="message" name="message" required style="border-radius: 5px;"></textarea>
+            </div>
+            <button type="submit" class="cta-button" style="background: #e67e22; color: white; border-radius: 5px; transition: background 0.3s; padding: 10px 20px;">Send Message</button>
+        </form>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 WeMake. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            $('.fade-in').each(function() {
+                $(this).addClass('show');
+            });
+
+            $("nav a").on("click", function(event) {
+                event.preventDefault();
+                const target = $(this).attr("href");
+                $("html, body").animate({ scrollTop: $(target).offset().top }, 800);
+            });
+        });
+        
+    function toggleNav() {
+        const navbar = document.getElementById("navbar");
+        navbar.classList.toggle("show");
+    }
+    document.getElementById("contactForm").onsubmit = function(event) {
+    const numberInput = document.getElementById("number");
+    if (!numberInput.checkValidity()) {
+        alert("Please fill in a 10-digit mobile number.");
+        event.preventDefault(); // Prevent form submission
+    }
+};
+
+
+    </script>
+</body>
+</html>
